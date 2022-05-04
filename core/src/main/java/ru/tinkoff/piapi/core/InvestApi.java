@@ -51,7 +51,7 @@ public class InvestApi {
 
   static {
     var props = loadProps();
-    var packageName = InvestApi.class.getPackageName();
+    var packageName = "ru.tinkoff.piapi.core";
     target = props.getProperty(String.format("%s.%s", packageName, targetPath));
     connectionTimeout = Duration.parse(props.getProperty(String.format("%s.%s", packageName, connectionTimeoutPath)));
     requestTimeout = Duration.parse(props.getProperty(String.format("%s.%s", packageName, requestTimeoutPath)));

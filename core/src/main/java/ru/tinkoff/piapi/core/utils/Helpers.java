@@ -17,6 +17,7 @@ import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+import org.apache.commons.io.IOUtils;
 
 public class Helpers {
 
@@ -30,7 +31,7 @@ public class Helpers {
       if (resourceAsStream == null) {
         throw new RuntimeException("Не найден файл errors.json");
       }
-      var json = new String(resourceAsStream.readAllBytes(), StandardCharsets.UTF_8);
+      var json = new String(IOUtils.toByteArray(resourceAsStream), StandardCharsets.UTF_8);
       errorsMap.putAll(new ObjectMapper().readValue(json, new TypeReference<Map<String, HashMap<String, String>>>() {
       }));
     } catch (IOException e) {
