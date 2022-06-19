@@ -8,8 +8,7 @@ import io.grpc.ForwardingClientCall;
 import io.grpc.ForwardingClientCallListener;
 import io.grpc.Metadata;
 import io.grpc.MethodDescriptor;
-import io.grpc.netty.shaded.io.grpc.netty.NettyChannelBuilder;
-import io.grpc.netty.shaded.io.netty.channel.ChannelOption;
+import io.grpc.okhttp.OkHttpChannelBuilder;
 import io.grpc.stub.MetadataUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -251,16 +250,12 @@ public class InvestApi {
     addAuthHeader(headers, token);
     addAppNameHeader(headers, appName);
 
-    return NettyChannelBuilder
+    return OkHttpChannelBuilder
       .forTarget(target)
       .intercept(
         new LoggingInterceptor(),
         MetadataUtils.newAttachHeadersInterceptor(headers),
         new TimeoutInterceptor(requestTimeout))
-      .withOption(
-        ChannelOption.CONNECT_TIMEOUT_MILLIS,
-        (int) connectionTimeout.toMillis()) // Намерено сужаем тип - предполагается,
-      // что таймаут имеет разумную величину.
       .useTransportSecurity()
       .keepAliveTimeout(60, TimeUnit.SECONDS)
       .build();

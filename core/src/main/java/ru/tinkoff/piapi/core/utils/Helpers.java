@@ -9,7 +9,9 @@ import io.grpc.stub.StreamObserver;
 import io.smallrye.mutiny.subscription.MultiEmitter;
 import ru.tinkoff.piapi.core.exception.ApiRuntimeException;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +19,6 @@ import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
-import org.apache.commons.io.IOUtils;
 
 public class Helpers {
 
@@ -31,12 +32,23 @@ public class Helpers {
       if (resourceAsStream == null) {
         throw new RuntimeException("Не найден файл errors.json");
       }
-      var json = new String(IOUtils.toByteArray(resourceAsStream), StandardCharsets.UTF_8);
+      var json = new String(convertStreamToByteArray(resourceAsStream));
       errorsMap.putAll(new ObjectMapper().readValue(json, new TypeReference<Map<String, HashMap<String, String>>>() {
       }));
     } catch (IOException e) {
       throw new RuntimeException("Не найден файл errors.json");
     }
+  }
+
+  public static byte[] convertStreamToByteArray(InputStream is) throws IOException {
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    byte[] buff = new byte[10240];
+    int i = Integer.MAX_VALUE;
+    while ((i = is.read(buff, 0, buff.length)) > 0) {
+      baos.write(buff, 0, i);
+    }
+
+    return baos.toByteArray(); // be sure to close InputStream in calling function
   }
 
   public static <T> T unaryCall(Supplier<T> supplier) {
