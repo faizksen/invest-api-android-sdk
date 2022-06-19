@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
   <groupId>ru.tinkoff.piapi</groupId>
-  <artifactId>java-sdk-core-android</artifactId>
+  <artifactId>java-sdk-android</artifactId>
   <versioning>
     <release>1.0.1-android-snapshot</release>
     <versions>
