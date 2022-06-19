@@ -4,7 +4,7 @@
 
     <groupId>ru.tinkoff.piapi</groupId>
     <artifactId>java-sdk-core-android</artifactId>
-    <version>1.0-android-snapshot</version>
+    <version>1.0.1-android-snapshot</version>
     <name>Tinkoff Invest API Java SDK - Core</name>
     <packaging>jar</packaging>
 
@@ -108,8 +108,8 @@
 
         <dependency>
             <groupId>io.grpc</groupId>
-            <artifactId>grpc-netty-shaded</artifactId>
-            <version>1.44.0</version>
+            <artifactId>grpc-okhttp</artifactId>
+            <version>1.47.0</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -143,7 +143,7 @@
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-testing</artifactId>
-            <version>1.44.0</version>
+            <version>1.47.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>

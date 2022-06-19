@@ -3,10 +3,10 @@
   <groupId>ru.tinkoff.piapi</groupId>
   <artifactId>java-sdk-core-android</artifactId>
   <versioning>
-    <release>1.0-android-snapshot</release>
+    <release>1.0.1-android-snapshot</release>
     <versions>
-      <version>1.0-android-snapshot</version>
+      <version>1.0.1-android-snapshot</version>
     </versions>
-    <lastUpdated>20220526101205</lastUpdated>
+    <lastUpdated>20220619081849</lastUpdated>
   </versioning>
 </metadata>
