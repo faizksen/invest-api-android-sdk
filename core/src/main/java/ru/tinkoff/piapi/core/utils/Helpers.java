@@ -84,6 +84,9 @@ public class Helpers {
     if ("RESOURCE_EXHAUSTED".equals(status.getCode().name())) {
       return "80002";
     }
+    if ("DEADLINE_EXCEEDED".equals(status.getCode().name())) {
+      return "10000";
+    }
     var error = status.getDescription();
     return Objects.requireNonNullElse(error, DEFAULT_ERROR_ID);
   }
